@@ -3,7 +3,9 @@ package;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.keyboard.FlxKeyboard;
+import flixel.math.FlxPoint;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 
 /**
@@ -16,16 +18,19 @@ class Player extends FlxSprite
 	private var Drag:Float = 900;
 	private var MaxVel:Float = 350;
 	private var moving:Bool = false;
+	public var bulletArray:FlxTypedGroup<Bullet>;
 
-	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
+	public function new(?X:Float=0, ?Y:Float=0, playerBulletArray:FlxTypedGroup<Bullet>) 
 	{
-		super(X, Y, SimpleGraphic);
+		super(X, Y);
 		
 		makeGraphic(110, 180);
 		
 		drag.x = Drag;
 		drag.y = Drag;
 		maxVelocity.x = maxVelocity.y = MaxVel;
+		
+		bulletArray = playerBulletArray;
 	}
 	
 	override public function update(elapsed:Float):Void 
@@ -37,6 +42,7 @@ class Player extends FlxSprite
 	
 	private function controls():Void
 	{
+		mouseControls();
 		
 		// PRESSING
 		var _left:Bool = FlxG.keys.anyPressed(["A", "LEFT"]);
@@ -114,6 +120,30 @@ class Player extends FlxSprite
 			
 		}
 		
+	}
+	
+	private var oldMousePos:FlxPoint;
+	private var aimAngle:Float = 0;
+	
+	private function mouseControls():Void
+	{
+		if (FlxG.mouse.justPressed)
+		{
+			oldMousePos = FlxG.mouse.getPosition();
+		}
+		
+		if (FlxG.mouse.pressed)
+		{
+			aimAngle = Math.atan2(FlxG.mouse.y - oldMousePos.y, FlxG.mouse.x - oldMousePos.x);
+		}
+		
+		if (FlxG.mouse.justReleased)
+		{
+			var newBullet = new Bullet(getMidpoint().x, getMidpoint().y, 1000, 60, aimAngle);
+			newBullet.velocity.x += velocity.x * 0.2;
+			newBullet.velocity.y += velocity.y * 0.2;
+			bulletArray.add(newBullet);
+		}
 	}
 	
 }

@@ -1,14 +1,22 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxState;
+import flixel.group.FlxGroup.FlxTypedGroup;
 
 class PlayState extends FlxState
 {
 	private var _player:Player;
+	private var playerBullets:FlxTypedGroup<Bullet>;
 	
 	override public function create():Void
 	{
-		_player = new Player(20, 20);
+		FlxG.camera.zoom = 0.6;
+		
+		playerBullets = new FlxTypedGroup<Bullet>();
+		add(playerBullets);
+		
+		_player = new Player(20, 20, playerBullets);
 		add(_player);
 		
 		super.create();
