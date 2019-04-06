@@ -7,16 +7,17 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.keyboard.FlxKeyboard;
 import flixel.math.FlxPoint;
 import flixel.system.FlxAssets.FlxGraphicAsset;
+import flixel.util.FlxColor;
 
 /**
  * ...
  * @author 
  */
-class Player extends FlxSprite 
+class Player extends Interactable 
 {
-	public var Speed:Float = 1850;
-	private var Drag:Float = 900;
-	private var MaxVel:Float = 350;
+	public var Speed:Float = 850;
+	private var Drag:Float = 1300;
+	private var MaxVel:Float = 300;
 	private var moving:Bool = false;
 	public var bulletArray:FlxTypedGroup<Bullet>;
 
@@ -24,7 +25,7 @@ class Player extends FlxSprite
 	{
 		super(X, Y);
 		
-		makeGraphic(110, 180);
+		makeGraphic(64, 90, FlxColor.BLUE);
 		
 		drag.x = Drag;
 		drag.y = Drag;

@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.math.FlxAngle;
 import flixel.system.FlxAssets.FlxGraphicAsset;
+import flixel.util.FlxColor;
 
 /**
  * ...
@@ -24,7 +25,7 @@ class Bullet extends FlxSprite
 	{
 		super(X, Y);
 		
-		makeGraphic(16, 8);
+		makeGraphic(16, 8, FlxColor.RED);
 		width = 10;
 		height = 10;
 		offset.y = 5;
@@ -44,8 +45,6 @@ class Bullet extends FlxSprite
 		velocity.y = ydir * -speed;
 		
 		angle = FlxAngle.asDegrees(angleOffset);
-		
-		
 		
 		//dir = Direction;
 		damage = Damage;
