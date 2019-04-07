@@ -34,7 +34,7 @@ class PlayState extends FlxState
 	
 	override public function create():Void
 	{
-		FlxG.camera.zoom = 0.8;
+		FlxG.camera.zoom = 1;
 		
 		var forestBG:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.forestSketch__png);
 		//add(forestBG);

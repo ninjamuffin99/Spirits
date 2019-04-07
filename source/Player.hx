@@ -19,7 +19,7 @@ import flixel.util.FlxColor;
 class Player extends Interactable 
 {
 	public var Speed:Float = 400;
-	private var Drag:Float = 1600;
+	private var Drag:Float = 1200;
 	private var MaxVel:Float = 240;
 	private var moving:Bool = false;
 	public var bulletArray:FlxTypedGroup<Bullet>;
@@ -210,7 +210,9 @@ class Player extends Interactable
 			else
 				dmg = 20;
 			
-			var newBullet = new Bullet(getMidpoint().x, getMidpoint().y, 1000, dmg, aimAngle);
+			var arrowSpeed:Float = FlxMath.remapToRange(peacefulness, minPeace, maxPeace, 3, 0.5);
+			
+			var newBullet = new Bullet(getMidpoint().x, getMidpoint().y, 1000 * arrowSpeed, dmg, aimAngle);
 			newBullet.velocity.x += velocity.x * 0.2;
 			newBullet.velocity.y += velocity.y * 0.2;
 			bulletArray.add(newBullet);
