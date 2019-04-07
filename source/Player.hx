@@ -193,7 +193,18 @@ class Player extends Interactable
 		
 		if (FlxG.mouse.justReleased)
 		{
-			var newBullet = new Bullet(getMidpoint().x, getMidpoint().y, 1000, 60, aimAngle);
+			
+			var dmg:Float;
+			if (peacefulness > 15)
+				dmg = 2.5;
+			else if (peacefulness > 0)
+				dmg = 5;
+			else if (peacefulness > -15)
+				dmg = 10;
+			else
+				dmg = 20;
+			
+			var newBullet = new Bullet(getMidpoint().x, getMidpoint().y, 1000, dmg, aimAngle);
 			newBullet.velocity.x += velocity.x * 0.2;
 			newBullet.velocity.y += velocity.y * 0.2;
 			bulletArray.add(newBullet);

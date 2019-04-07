@@ -246,6 +246,15 @@ class TiledLevel extends TiledMap
 				var tree:Tree = new Tree(x, y);
 				tree.immovable = true;
 				state._grpEntities.add(tree);
+			case "spiritarea":
+				var area:FlxObject = new FlxObject(x, y, o.width, o.height);
+				var dummyArea:FlxSprite = new FlxSprite(x, y).makeGraphic(o.width, o.height, FlxColor.MAGENTA);
+				dummyArea.alpha = 0.5;
+				state.add(dummyArea);
+				state.grpSpiritArea.add(area);
+			case "lightghost":
+				var lightGhost:LightSpirit = new LightSpirit(x, y, getPathData(o));
+				state._grpGhosts.add(lightGhost);
 		}
 		
 	}

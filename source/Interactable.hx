@@ -12,12 +12,18 @@ class Interactable extends FlxSprite
 {
 	
 	public var peacefulness:Float = 0;
-	public var minPeace:Float = -20;
-	public var maxPeace:Float = 10;
+	public var minPeace:Float = -30;
+	public var maxPeace:Float = 30;
+	public var betterHealth:Float = 0;
 	
 	public var OBJtype:Int = 0;
 	
+	public static inline var LIGHT_GHOST:Int = 11;
 	public static inline var DARK_GHOST:Int = 12;
+	public static inline var SPIRIT_GHOST:Int = 13;
+	
+	public static inline var LIGHT_GHOST_CORPSE:Int = 51;
+	public static inline var DARK_GHOST_CORPSE:Int = 52;
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{

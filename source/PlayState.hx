@@ -3,6 +3,7 @@ package;
 import djFlixel.map.MapTemplate;
 import flixel.FlxCamera.FlxCameraFollowStyle;
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.addons.effects.FlxTrail;
@@ -21,13 +22,14 @@ class PlayState extends FlxState
 	private var playerBullets:FlxTypedGroup<Bullet>;
 	private var _map:TiledLevel;
 	public var _grpEntities:FlxTypedGroup<Interactable>;
-	private var _grpGhosts:FlxTypedGroup<Ghost>;
+	public var _grpGhosts:FlxTypedGroup<Ghost>;
 	private var HUD:FlxText;
 	private var bulletPreview:FlxSprite;
 	private var stringPreview:FlxSprite;
 	
 	public var worldMeditation:Bool = false;
 	private var meditateOverlay:FlxSprite;
+	public var grpSpiritArea:FlxTypedGroup<FlxObject>;
 	
 	override public function create():Void
 	{
@@ -36,6 +38,9 @@ class PlayState extends FlxState
 		
 		_grpGhosts = new FlxTypedGroup<Ghost>();
 		add(_grpGhosts);
+		
+		grpSpiritArea = new FlxTypedGroup<FlxObject>();
+		add(grpSpiritArea);
 		
 		_grpEntities = new FlxTypedGroup<Interactable>();
 		add(_grpEntities);
@@ -72,8 +77,6 @@ class PlayState extends FlxState
 		meditateOverlay.alpha = 0.5;
 		add(meditateOverlay);
 		
-		
-		
 		add(bulletPreview);
 		add(stringPreview);
 		
@@ -82,7 +85,6 @@ class PlayState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
-		
 		if (worldMeditation != _player.meditating)
 		{
 			FlxG.camera.flash(FlxColor.WHITE, 0.4);
@@ -125,7 +127,21 @@ class PlayState extends FlxState
 		
 		_grpGhosts.forEach(function(g:Ghost)
 		{
+			//LIGHT GHOST SHIT
+			if (g.OBJtype == Interactable.LIGHT_GHOST)
+			{
+				if (worldMeditation)
+				{
+					g.alpha = 0.8;
+				}
+				else
+				{
+					g.alpha = 0;
+				}
+			}
 			
+			
+			// DARK GHOST SHIT
 			if (g.OBJtype == Interactable.DARK_GHOST)
 			{
 				FlxVelocity.moveTowardsPoint(g, _player.getMidpoint(), 50);
@@ -136,11 +152,35 @@ class PlayState extends FlxState
 					_player.peacefulness -= 3;
 				}
 				
-				if (FlxG.overlap(g, playerBullets))
+				playerBullets.forEach(function(b:Bullet)
 				{
-					g.kill();
-					_player.peacefulness += 3;
-				}
+					if (FlxG.overlap(g, b))
+					{
+						g.betterHealth -= b.damage;
+						
+						if (g.betterHealth == 0)
+						{
+							var corpse:Corpse = new Corpse(g.x, g.y);
+							corpse.OBJtype = Interactable.DARK_GHOST_CORPSE;
+							var velMult:Float = 0.4;
+							corpse.velocity.set(b.velocity.x * velMult, b.velocity.y * velMult);
+							_grpEntities.add(corpse);
+							
+							g.kill();
+						}
+						else if (g.betterHealth < 0)
+						{
+							g.kill();
+							_player.peacefulness += 1;
+						}
+						
+						_player.peacefulness += 4;
+						
+						b.kill();
+					}
+					
+				});
+				
 				
 				if (worldMeditation)
 				{
