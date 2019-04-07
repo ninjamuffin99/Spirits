@@ -1,6 +1,8 @@
 package;
 
+import djFlixel.FLS;
 import djFlixel.MainTemplate;
+import djFlixel.tool.DynAssets;
 import flixel.FlxGame;
 import flixel.FlxState;
 import openfl.Lib;
@@ -29,5 +31,7 @@ class Main extends MainTemplate
 		FPS = framerate;
 		INITIAL_STATE = initialState;
 		ZOOM = 1;
+		
+		//DynAssets.add("assets/data/levelGood.tmx");
 	}
 }

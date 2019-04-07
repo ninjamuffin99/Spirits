@@ -34,6 +34,8 @@ class PlayState extends FlxState
 	private var overlayDEAD:FlxSprite;
 	private var camFollow:FlxObject;
 	
+	private var lightSpiritSpawned:Bool = false;
+	
 	override public function create():Void
 	{
 		FlxG.camera.zoom = 1;
@@ -181,7 +183,13 @@ class PlayState extends FlxState
 		{
 			if (i.OBJtype == Interactable.DARK_GHOST_CORPSE)
 			{
-				
+				if (i.overlaps(grpSpiritArea))
+				{
+					if (!lightSpiritSpawned && FlxG.random.bool(0.2))
+					{
+						var goodGhost:BeastSpirit = new BeastSpirit();
+					}
+				}
 			}
 		});
 		
