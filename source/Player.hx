@@ -18,9 +18,9 @@ import flixel.util.FlxColor;
  */
 class Player extends Interactable 
 {
-	public var Speed:Float = 550;
-	private var Drag:Float = 1400;
-	private var MaxVel:Float = 290;
+	public var Speed:Float = 400;
+	private var Drag:Float = 1600;
+	private var MaxVel:Float = 240;
 	private var moving:Bool = false;
 	public var bulletArray:FlxTypedGroup<Bullet>;
 	private var bulletPreview:FlxSprite;
@@ -62,10 +62,15 @@ class Player extends Interactable
 		else
 			meditating = false;
 		
+		if (meditating)
+			peacefulness += 1 * FlxG.elapsed;
+		
 		if (peacefulness < maxPeace)
 		{
 			peacefulness += 1 * FlxG.elapsed;
 		}
+		else
+			peacefulness = maxPeace;
 		
 		if (peacefulness < minPeace)
 		{
@@ -75,7 +80,8 @@ class Player extends Interactable
 	
 	private function controls():Void
 	{
-		mouseControls();
+		if (!meditating)
+			mouseControls();
 		
 		// PRESSING
 		var _left:Bool = FlxG.keys.anyPressed(["A", "LEFT"]);

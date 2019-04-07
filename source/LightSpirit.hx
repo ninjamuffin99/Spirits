@@ -16,6 +16,7 @@ class LightSpirit extends Ghost
 		super(X, Y, path);
 		
 		makeGraphic(50, 50, FlxColor.RED);
+		OBJtype = Interactable.LIGHT_GHOST;
 		betterHealth = 10;
 	}
 	

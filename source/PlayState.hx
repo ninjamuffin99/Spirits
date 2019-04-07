@@ -1,6 +1,7 @@
 package;
 
 import djFlixel.map.MapTemplate;
+import flixel.FlxCamera;
 import flixel.FlxCamera.FlxCameraFollowStyle;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -33,8 +34,10 @@ class PlayState extends FlxState
 	
 	override public function create():Void
 	{
+		FlxG.camera.zoom = 0.8;
+		
 		var forestBG:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.forestSketch__png);
-		add(forestBG);
+		//add(forestBG);
 		
 		_grpGhosts = new FlxTypedGroup<Ghost>();
 		add(_grpGhosts);
@@ -63,8 +66,9 @@ class PlayState extends FlxState
 		
 		_grpEntities.add(_player);
 		
-		FlxG.camera.follow(_player, FlxCameraFollowStyle.TOPDOWN, 0.05);
-		FlxG.camera.followLead.set(2.5, 2.5);
+		FlxG.camera.follow(_player, FlxCameraFollowStyle.TOPDOWN_TIGHT, 0.05);
+		FlxG.camera.followLead.set(1.5, 1.5);
+		FlxG.camera.focusOn(_player.getPosition());
 		//FlxG.camera.setScrollBounds(0, forestBG.width, 0,  forestBG.height);
 		
 		HUD = new FlxText(10, 10, 0, "", 20);
@@ -112,9 +116,17 @@ class PlayState extends FlxState
 		_player.peacefulness = FlxMath.roundDecimal(_player.peacefulness, 2);
 		HUD.text = "PEACEFULNESS: " + _player.peacefulness;
 		
-		if (_player.peacefulness < 0 && FlxG.random.bool(1))
+		if (_player.peacefulness < 0 && FlxG.random.bool(0.3))
 		{
-			var badGhost:DarkSpirit = new DarkSpirit(_player.x + 100, _player.y + 100);
+			var randomX:Float = FlxG.random.float(100, 500);
+			var randomY:Float = FlxG.random.float(100, 500);
+			
+			if (FlxG.random.bool())
+				randomX *= -1;
+			if (FlxG.random.bool())
+				randomY *= -1;
+			
+			var badGhost:DarkSpirit = new DarkSpirit(_player.x + randomX, _player.y + randomY);
 			badGhost.alpha = 0;
 			_grpGhosts.add(badGhost);
 			
@@ -150,6 +162,7 @@ class PlayState extends FlxState
 				{
 					g.kill();
 					_player.peacefulness -= 3;
+					FlxG.camera.flash(0xFFDD9988);
 				}
 				
 				playerBullets.forEach(function(b:Bullet)
@@ -188,14 +201,7 @@ class PlayState extends FlxState
 				}
 				else
 				{
-					if (_player.peacefulness < 0 && g.alpha < 0.6)
-					{
-						g.alpha += 0.05 * FlxG.elapsed;
-					}
-					else
-					{
-						g.alpha -= 2 * FlxG.elapsed;
-					}
+					g.alpha = 0;
 				}
 				
 				
