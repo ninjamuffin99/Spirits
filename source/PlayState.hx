@@ -64,20 +64,13 @@ class PlayState extends FlxState
 		
 		//trace(FLS.assets.getFileAsText("assets/data/levelGood.tmx"));
 		
-		var mapFile:String = "";
-		
-		FLS.assets.getFileAsText("assets/data/levelGood.tmx", function(s:String)
-		{
-			mapFile = s;
-		});
-		
 		_map = new TiledLevel("assets/data/levelGood.tmx", this);
-		add(_map.backgroundLayer);
+		//add(_map.backgroundLayer);
 		add(_map.imagesLayer);
 		add(_map.BGObjects);
 		add(_map.foregroundObjects);
 		add(_map.objectsLayer);
-		//add(_map.collisionTiles);
+		add(_map.collisionTiles);
 		
 		_grpEntities.add(_player);
 		
@@ -113,7 +106,7 @@ class PlayState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
-		
+		_map.collideWithLevel(_grpEntities);
 		
 		if (_player.aiming || _player.meditating)
 		{
