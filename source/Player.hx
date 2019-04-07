@@ -5,7 +5,10 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.keyboard.FlxKeyboard;
+import flixel.math.FlxAngle;
+import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
+import flixel.math.FlxVector;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.util.FlxColor;
 
@@ -15,21 +18,33 @@ import flixel.util.FlxColor;
  */
 class Player extends Interactable 
 {
-	public var Speed:Float = 850;
-	private var Drag:Float = 1300;
-	private var MaxVel:Float = 300;
+	public var Speed:Float = 550;
+	private var Drag:Float = 1400;
+	private var MaxVel:Float = 290;
 	private var moving:Bool = false;
 	public var bulletArray:FlxTypedGroup<Bullet>;
+	private var bulletPreview:FlxSprite;
+	private var stringPreview:FlxSprite;
+	
+	private var aiming:Bool = false;
+	
+	public var meditating:Bool = false;
 
-	public function new(?X:Float=0, ?Y:Float=0, playerBulletArray:FlxTypedGroup<Bullet>) 
+	public function new(?X:Float=0, ?Y:Float=0, playerBulletArray:FlxTypedGroup<Bullet>, bulletPrev:FlxSprite, stringPrev:FlxSprite) 
 	{
 		super(X, Y);
 		
 		makeGraphic(64, 90, FlxColor.BLUE);
 		
+		offset.y = height - 20;
+		height = 20;
+		
 		drag.x = Drag;
 		drag.y = Drag;
 		maxVelocity.x = maxVelocity.y = MaxVel;
+		
+		bulletPreview = bulletPrev;
+		stringPreview = stringPrev;
 		
 		bulletArray = playerBulletArray;
 	}
@@ -39,6 +54,23 @@ class Player extends Interactable
 		super.update(elapsed);
 		
 		controls();
+		
+		if (FlxG.keys.pressed.SPACE)
+		{
+			meditating = true;
+		}
+		else
+			meditating = false;
+		
+		if (peacefulness < maxPeace)
+		{
+			peacefulness += 1 * FlxG.elapsed;
+		}
+		
+		if (peacefulness < minPeace)
+		{
+			peacefulness = minPeace;
+		}
 	}
 	
 	private function controls():Void
@@ -74,7 +106,7 @@ class Player extends Interactable
 			_up = _down = false;
 		}
 		
-		if (_left || _right || _up || _down)
+		if ((_left || _right || _up || _down) && !aiming && !meditating)
 		{
 			moving = true;
 			if (FlxG.keys.pressed.SHIFT)
@@ -133,9 +165,30 @@ class Player extends Interactable
 			oldMousePos = FlxG.mouse.getPosition();
 		}
 		
-		if (FlxG.mouse.pressed)
+		if (FlxG.mouse.pressed && FlxMath.vectorLength(FlxG.mouse.y - oldMousePos.y, FlxG.mouse.x - oldMousePos.x) > 40)
 		{
+			
+			aiming = true;
+			
 			aimAngle = Math.atan2(FlxG.mouse.y - oldMousePos.y, FlxG.mouse.x - oldMousePos.x);
+			
+			bulletPreview.visible = true;
+			bulletPreview.angle = FlxAngle.asDegrees(aimAngle);
+			bulletPreview.setPosition(getMidpoint().x, getMidpoint().y);
+			
+			stringPreview.setGraphicSize(Std.int(FlxMath.vectorLength(FlxG.mouse.y - oldMousePos.y, FlxG.mouse.x - oldMousePos.x)), 1);
+			stringPreview.updateHitbox();
+			stringPreview.angle = FlxAngle.asDegrees(aimAngle);
+			stringPreview.setPosition(getMidpoint().x, getMidpoint().y);
+			stringPreview.visible = true;
+			
+		}
+		else
+		{
+			aiming = false;
+			
+			stringPreview.visible = false;
+			bulletPreview.visible = false;
 		}
 		
 		if (FlxG.mouse.justReleased)
@@ -144,6 +197,8 @@ class Player extends Interactable
 			newBullet.velocity.x += velocity.x * 0.2;
 			newBullet.velocity.y += velocity.y * 0.2;
 			bulletArray.add(newBullet);
+			
+			peacefulness -= 4;
 		}
 	}
 	

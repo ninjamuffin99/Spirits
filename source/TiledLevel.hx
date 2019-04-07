@@ -239,13 +239,13 @@ class TiledLevel extends TiledMap
 		{
 			case "player_start":
 				
-				//state.player_start = new FlxObject(x, y, 1, 1);
-				//state.add(state.player_start);
+				state._player.setPosition(x, y);
 				
 				FlxG.log.add("Player object added");
 			case "tree":
 				var tree:Tree = new Tree(x, y);
-				state._grpTrees.add(tree);
+				tree.immovable = true;
+				state._grpEntities.add(tree);
 		}
 		
 	}
