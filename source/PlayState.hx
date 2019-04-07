@@ -31,6 +31,8 @@ class PlayState extends FlxState
 	public var worldMeditation:Bool = false;
 	private var meditateOverlay:FlxSprite;
 	public var grpSpiritArea:FlxTypedGroup<FlxObject>;
+	private var overlayDEAD:FlxSprite;
+	private var camFollow:FlxObject;
 	
 	override public function create():Void
 	{
@@ -66,9 +68,12 @@ class PlayState extends FlxState
 		
 		_grpEntities.add(_player);
 		
-		FlxG.camera.follow(_player, FlxCameraFollowStyle.TOPDOWN_TIGHT, 0.05);
+		camFollow = new FlxObject(_player.x, _player.y, 1, 1);
+		add(camFollow);
+		
+		FlxG.camera.follow(camFollow, FlxCameraFollowStyle.TOPDOWN_TIGHT, 0.05);
 		FlxG.camera.followLead.set(1.5, 1.5);
-		FlxG.camera.focusOn(_player.getPosition());
+		FlxG.camera.focusOn(camFollow.getPosition());
 		//FlxG.camera.setScrollBounds(0, forestBG.width, 0,  forestBG.height);
 		
 		HUD = new FlxText(10, 10, 0, "", 20);
@@ -81,6 +86,10 @@ class PlayState extends FlxState
 		meditateOverlay.alpha = 0.5;
 		add(meditateOverlay);
 		
+		overlayDEAD = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.RED);
+		overlayDEAD.scrollFactor.set();
+		add(overlayDEAD);
+		
 		add(bulletPreview);
 		add(stringPreview);
 		
@@ -89,6 +98,40 @@ class PlayState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
+		
+		
+		if (_player.aiming || _player.meditating)
+		{
+			
+			//SHOUTOUT TO MIKE, AND ALSO BOMTOONS
+			var dx = _player.x - FlxG.mouse.x;
+			var dy = _player.y - FlxG.mouse.y;
+			//var length = Math.sqrt(dx * dx + dy * dy);
+			var camOffset = 0.7;
+			
+			dx *= camOffset;
+			dy *= camOffset;
+			
+			// + dx is for inverse looking, feels nicer when shooting
+			// -  is for meditation and also is better this way i guess
+			if (_player.aiming)
+			{
+				camFollow.x = _player.x + dx;
+				camFollow.y = _player.y + (dy * 1.05);
+			}
+			else
+			{
+				camFollow.x = _player.x - (dx * 0.5);
+				camFollow.y = _player.y - (dy * 0.65);
+			}
+			
+		}
+		else
+			camFollow.setPosition(_player.getMidpoint().x, _player.getMidpoint().y);
+		
+		
+		
+		
 		if (worldMeditation != _player.meditating)
 		{
 			FlxG.camera.flash(FlxColor.WHITE, 0.4);
@@ -96,6 +139,8 @@ class PlayState extends FlxState
 		
 		worldMeditation = _player.meditating;
 		meditateOverlay.visible = worldMeditation;
+		
+		overlayDEAD.alpha = FlxMath.remapToRange(_player.corruption, 0, _player.corruptMax, 0, 1);
 		
 		
 		if (worldMeditation)
@@ -134,7 +179,10 @@ class PlayState extends FlxState
 		
 		_grpEntities.forEach(function(i:Interactable)
 		{
-			
+			if (i.OBJtype == Interactable.DARK_GHOST_CORPSE)
+			{
+				
+			}
 		});
 		
 		_grpGhosts.forEach(function(g:Ghost)
@@ -156,7 +204,7 @@ class PlayState extends FlxState
 			// DARK GHOST SHIT
 			if (g.OBJtype == Interactable.DARK_GHOST)
 			{
-				FlxVelocity.moveTowardsPoint(g, _player.getMidpoint(), 50);
+				FlxVelocity.moveTowardsPoint(g, _player.getMidpoint(), 30);
 				
 				if (FlxG.overlap(g, _player))
 				{

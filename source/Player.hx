@@ -26,10 +26,14 @@ class Player extends Interactable
 	private var bulletPreview:FlxSprite;
 	private var stringPreview:FlxSprite;
 	
-	private var aiming:Bool = false;
+	public var aiming:Bool = false;
 	
 	public var meditating:Bool = false;
-
+	
+	public var corruption:Float = 0;
+	public var corruptMax:Float = 20;
+	
+	
 	public function new(?X:Float=0, ?Y:Float=0, playerBulletArray:FlxTypedGroup<Bullet>, bulletPrev:FlxSprite, stringPrev:FlxSprite) 
 	{
 		super(X, Y);
@@ -75,6 +79,21 @@ class Player extends Interactable
 		if (peacefulness < minPeace)
 		{
 			peacefulness = minPeace;
+		}
+		
+		if (peacefulness < -25)
+		{
+			corruption += 1.2 * FlxG.elapsed;
+		}
+		
+		if (corruption > 0)
+		{
+			corruption -= 0.2 * FlxG.elapsed;
+		}
+		
+		if (corruption > 19)
+		{
+			// DIED
 		}
 	}
 	
@@ -163,6 +182,7 @@ class Player extends Interactable
 	
 	private var oldMousePos:FlxPoint;
 	private var aimAngle:Float = 0;
+	private var aimPower:Float = 0;
 	
 	private function mouseControls():Void
 	{
@@ -171,6 +191,8 @@ class Player extends Interactable
 			oldMousePos = FlxG.mouse.getPosition();
 		}
 		
+		
+		
 		if (FlxG.mouse.pressed && FlxMath.vectorLength(FlxG.mouse.y - oldMousePos.y, FlxG.mouse.x - oldMousePos.x) > 40)
 		{
 			
@@ -178,11 +200,17 @@ class Player extends Interactable
 			
 			aimAngle = Math.atan2(FlxG.mouse.y - oldMousePos.y, FlxG.mouse.x - oldMousePos.x);
 			
+			aimPower = FlxMath.vectorLength(FlxG.mouse.y - oldMousePos.y, FlxG.mouse.x - oldMousePos.x);
+			if (aimPower > 200)
+			{
+				aimPower = 200;
+			}
+			
 			bulletPreview.visible = true;
 			bulletPreview.angle = FlxAngle.asDegrees(aimAngle);
 			bulletPreview.setPosition(getMidpoint().x, getMidpoint().y);
 			
-			stringPreview.setGraphicSize(Std.int(FlxMath.vectorLength(FlxG.mouse.y - oldMousePos.y, FlxG.mouse.x - oldMousePos.x)), 1);
+			stringPreview.setGraphicSize(Std.int(aimPower), 1);
 			stringPreview.updateHitbox();
 			stringPreview.angle = FlxAngle.asDegrees(aimAngle);
 			stringPreview.setPosition(getMidpoint().x, getMidpoint().y);
@@ -210,9 +238,12 @@ class Player extends Interactable
 			else
 				dmg = 20;
 			
-			var arrowSpeed:Float = FlxMath.remapToRange(peacefulness, minPeace, maxPeace, 3, 0.5);
 			
-			var newBullet = new Bullet(getMidpoint().x, getMidpoint().y, 1000 * arrowSpeed, dmg, aimAngle);
+			aimPower = FlxMath.remapToRange(aimPower, 40, 200, 0.4, 1.2);
+			
+			var arrowSpeed:Float = FlxMath.remapToRange(peacefulness, minPeace, maxPeace, 2.6, 0.5);
+			
+			var newBullet = new Bullet(getMidpoint().x, getMidpoint().y, 1000 * arrowSpeed * aimPower, dmg, aimAngle);
 			newBullet.velocity.x += velocity.x * 0.2;
 			newBullet.velocity.y += velocity.y * 0.2;
 			bulletArray.add(newBullet);
