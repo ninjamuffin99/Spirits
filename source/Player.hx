@@ -211,7 +211,6 @@ class Player extends Interactable
 			bulletPreview.setPosition(getMidpoint().x, getMidpoint().y);
 			
 			stringPreview.setGraphicSize(Std.int(aimPower), 1);
-			stringPreview.updateHitbox();
 			stringPreview.angle = FlxAngle.asDegrees(aimAngle);
 			stringPreview.setPosition(getMidpoint().x, getMidpoint().y);
 			stringPreview.visible = true;

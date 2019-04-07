@@ -40,7 +40,7 @@ class PlayState extends FlxState
 	
 	override public function create():Void
 	{
-		FlxG.camera.zoom = 1;
+		FlxG.camera.zoom = 0.9;
 		
 		var forestBG:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.forestSketch__png);
 		//add(forestBG);
@@ -97,10 +97,12 @@ class PlayState extends FlxState
 		meditateOverlay = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLUE);
 		meditateOverlay.scrollFactor.set();
 		meditateOverlay.alpha = 0.5;
+		meditateOverlay.setGraphicSize(Std.int(meditateOverlay.width / FlxG.camera.zoom));
 		add(meditateOverlay);
 		
 		overlayDEAD = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.RED);
 		overlayDEAD.scrollFactor.set();
+		overlayDEAD.setGraphicSize(Std.int(overlayDEAD.width / FlxG.camera.zoom));
 		add(overlayDEAD);
 		
 		add(bulletPreview);
