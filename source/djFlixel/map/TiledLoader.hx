@@ -97,10 +97,11 @@ class TiledLoader implements IFlxDestroyable
 		// If a dynamic load fails, it will try to load from embedded
 		
 		#if (EXTERNAL_LOAD)
-			if (DynAssets.files.exists(file)) {
+			if (FLS.assets.files.exists(file)) {
 				trace(" .. from dynamic Assets");
-				root = new Fast(Xml.parse(DynAssets.files.get(file))).node.resolve("map");
-			}else {	
+				root = new Fast(Xml.parse(FLS.assets.files.get(file))).node.resolve("map");
+			}
+			else	
 				trace('Warning: Can\'t load "$file" dynamically. Push it to the dynamic file list.');
 		#end
 		
@@ -109,14 +110,15 @@ class TiledLoader implements IFlxDestroyable
 			root = new Fast(Xml.parse(Assets.getText(ASSETS_PATH + file))).node.resolve("map");
 			
 		#if (EXTERNAL_LOAD)
-			}
+		{
+		}
 		#end
-			
+		
 		
 		if (root == null) {
 			throw 'Fatal: Can\'t load map file $file';
 		}
-
+		
 		mapWidth   = Std.parseInt(root.att.resolve("width"));
 		mapHeight  = Std.parseInt(root.att.resolve("height"));
 		tileWidth  = Std.parseInt(root.att.resolve("tilewidth"));

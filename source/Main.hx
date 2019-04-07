@@ -33,5 +33,6 @@ class Main extends MainTemplate
 		ZOOM = 1;
 		
 		//DynAssets.add("assets/data/levelGood.tmx");
+		FLS.assets.add("assets/data/levelGood.tmx");
 	}
 }

@@ -1,5 +1,6 @@
 package;
 
+import djFlixel.FLS;
 import djFlixel.map.MapTemplate;
 import flixel.FlxCamera;
 import flixel.FlxCamera.FlxCameraFollowStyle;
@@ -16,6 +17,7 @@ import flixel.math.FlxVelocity;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxSort;
+import haxe.xml.Fast;
 
 class PlayState extends FlxState
 {
@@ -60,7 +62,16 @@ class PlayState extends FlxState
 		stringPreview = new FlxSprite(0, 0).makeGraphic(1, 1);
 		_player = new Player(20, 20, playerBullets, bulletPreview, stringPreview);
 		
-		_map = new TiledLevel(AssetPaths.levelGood__tmx, this);
+		//trace(FLS.assets.getFileAsText("assets/data/levelGood.tmx"));
+		
+		var mapFile:String = "";
+		
+		FLS.assets.getFileAsText("assets/data/levelGood.tmx", function(s:String)
+		{
+			mapFile = s;
+		});
+		
+		_map = new TiledLevel("assets/data/levelGood.tmx", this);
 		add(_map.backgroundLayer);
 		add(_map.imagesLayer);
 		add(_map.BGObjects);
@@ -265,5 +276,9 @@ class PlayState extends FlxState
 		});
 		
 		super.update(elapsed);
+		
+		#if EXTERNAL_LOAD
+			FLS.debug_keys();
+		#end
 	}
 }
