@@ -21,6 +21,7 @@ class Interactable extends FlxSprite
 	public static inline var TREE:Int = 0;
 	public static inline var PLANT:Int = 1;
 	public static inline var STUMP:Int = 2;
+	public static inline var ROCK:Int = 3;
 	
 	public static inline var TOTEM:Int = 69;
 	public static inline var LIGHT_GHOST:Int = 11;

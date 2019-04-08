@@ -124,16 +124,23 @@ class PlayState extends FlxState
 	{
 		_map.collideWithLevel(_grpEntities);
 		
-		if (FlxG.keys.justPressed.TAB)
+		if (FlxG.keys.justPressed.ENTER)
 			mapEditing = !mapEditing;
 		
 		if (mapEditing)
 		{
-			_player.allowCollisions = FlxObject.NONE;
+			_player.solid = false;
 			mapEditCode();
 		}
 		else
-			_player.allowCollisions = FlxObject.ANY;
+		{
+			if (addedTempObjs)
+			{
+				tempObjs.forEach(function(i:Interactable){i.visible = false; });
+			}
+			
+			_player.solid = true;
+		}
 		
 		if (_player.aiming || _player.meditating)
 		{
@@ -368,6 +375,9 @@ class PlayState extends FlxState
 			var stump:Stump = new Stump();
 			tempObjs.add(stump);
 			
+			var rock:Rock = new Rock();
+			tempObjs.add(rock);
+			
 			add(tempObjs);
 			
 			
@@ -412,6 +422,8 @@ class PlayState extends FlxState
 					objNew = new Plant();
 				case 2:
 					objNew = new Stump();
+				case 3:
+					objNew = new Rock();
 				default:
 					objNew = new Interactable();
 			}
