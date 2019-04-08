@@ -26,11 +26,11 @@ class Tree extends Interactable
 		}
 		
 		
-		offset.y = height - 16;
-		height = 16;
+		offset.y = height - 25;
+		height = 28;
 		
-		offset.x = 7;
-		width -= 14;
+		offset.x = 12;
+		width -= 20;
 	}
 	
 }

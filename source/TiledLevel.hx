@@ -245,7 +245,16 @@ class TiledLevel extends TiledMap
 				
 				FlxG.log.add("Player object added");
 			case "tree":
-				var tree:Tree = new Tree(x, y);
+				
+				var treeType:String = "small";
+				if (o.name == "small" || o.name == "treesmall")
+					treeType = "small";
+				if (o.name == "med" || o.name == "treesmed" || o.name == "treemedium")
+					treeType = "med";
+				if (o.name == "large" || o.name ==  "treelarge")
+					treeType = "large";
+				
+				var tree:Tree = new Tree(x, y, treeType);
 				tree.immovable = true;
 				state._grpEntities.add(tree);
 			case "treesmall":
