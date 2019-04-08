@@ -18,6 +18,7 @@ class Interactable extends FlxSprite
 	
 	public var OBJtype:Int = 0;
 	
+	public static inline var TOTEM:Int = 69;
 	public static inline var LIGHT_GHOST:Int = 11;
 	public static inline var DARK_GHOST:Int = 12;
 	public static inline var SPIRIT_GHOST:Int = 13;

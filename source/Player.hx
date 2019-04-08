@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
+import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.keyboard.FlxKeyboard;
 import flixel.math.FlxAngle;
@@ -38,7 +39,12 @@ class Player extends Interactable
 	{
 		super(X, Y);
 		
-		loadGraphic(AssetPaths.player__png);
+		var tex = FlxAtlasFrames.fromSpriteSheetPacker(AssetPaths.playerSheet__png, AssetPaths.playerSheet__txt);
+		frames = tex;
+		
+		animation.add("idle", [0]);
+		animation.add("meditate", [3]);
+		animation.play("idle");
 		//makeGraphic(64, 90, FlxColor.BLUE);
 		
 		offset.y = height - 20;
@@ -70,7 +76,12 @@ class Player extends Interactable
 			meditating = false;
 		
 		if (meditating)
+		{
+			animation.play("meditate");
 			peacefulness += 1 * FlxG.elapsed;
+		}
+		else
+			animation.play("idle");
 		
 		if (peacefulness < maxPeace)
 		{

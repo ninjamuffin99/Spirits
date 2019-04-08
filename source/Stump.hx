@@ -13,6 +13,8 @@ class Stump extends Interactable
 	{
 		super(X, Y, SimpleGraphic);
 		
+		immovable = true;
+		
 		loadGraphic(AssetPaths.stumpSmall__png);
 		offset.y = height - 20;
 		height = 20;
