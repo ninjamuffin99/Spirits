@@ -240,6 +240,8 @@ class Player extends Interactable
 		
 		if (FlxG.mouse.justReleased)
 		{
+			FlxG.sound.play(AssetPaths.arrow__ogg, 0.5);
+			
 			
 			var dmg:Float;
 			if (peacefulness > 15)
