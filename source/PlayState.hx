@@ -2,6 +2,7 @@ package;
 
 import djFlixel.FLS;
 import djFlixel.map.MapTemplate;
+import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxCamera.FlxCameraFollowStyle;
 import flixel.FlxG;
@@ -10,9 +11,11 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxTrailArea;
+import flixel.group.FlxGroup;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxAngle;
 import flixel.math.FlxMath;
+import flixel.math.FlxPoint;
 import flixel.math.FlxVelocity;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
@@ -37,6 +40,11 @@ class PlayState extends FlxState
 	private var camFollow:FlxObject;
 	
 	private var lightSpiritSpawned:Bool = false;
+	
+	private var mapEditing:Bool = false;
+	private var curTool:Int = 0;
+	private var editorTools:Array<String> = ["Add", "Move"];
+	private var curOBJ:Int = 0;
 	
 	override public function create():Void
 	{
@@ -78,8 +86,8 @@ class PlayState extends FlxState
 		var beast:Interactable = new Interactable(2440, 2670);
 		beast.loadGraphic(AssetPaths.beast__png);
 		beast.immovable = true;
-		beast.offset.y = beast.height - 50;
-		beast.height -= 50;
+		beast.offset.y = beast.height - 100;
+		beast.height = 100;
 		_grpEntities.add(beast);
 		
 		camFollow = new FlxObject(_player.x, _player.y, 1, 1);
@@ -115,6 +123,17 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		_map.collideWithLevel(_grpEntities);
+		
+		if (FlxG.keys.justPressed.TAB)
+			mapEditing = !mapEditing;
+		
+		if (mapEditing)
+		{
+			_player.allowCollisions = FlxObject.NONE;
+			mapEditCode();
+		}
+		else
+			_player.allowCollisions = FlxObject.ANY;
 		
 		if (_player.aiming || _player.meditating)
 		{
@@ -299,4 +318,108 @@ class PlayState extends FlxState
 			FLS.debug_keys();
 		#end
 	}
+	
+	private function mapEditCode():Void
+	{
+		
+		toolSelection();
+		
+		switch (curTool)
+		{
+			case 0:
+				addingObjects();
+		}
+	}
+	
+	private function toolSelection():Void
+	{
+		curTool += FlxG.mouse.wheel;
+		
+		if (FlxG.keys.justPressed.UP)
+			curTool += 1;
+		if (FlxG.keys.justPressed.DOWN)
+			curTool -= 1;
+		
+		if (curTool >= editorTools.length)
+		{
+			curTool = 0;
+		}
+		if (curTool < 0)
+			curTool = editorTools.length - 1;
+		
+		
+	}
+	
+	private var tempObjs:FlxTypedGroup<Interactable>;
+	private var addedTempObjs = false;
+	
+	private function addingObjects():Void
+	{
+		if (!addedTempObjs)
+		{
+			tempObjs = new FlxTypedGroup<Interactable>();
+			
+			var tree:Tree = new Tree();
+			tempObjs.add(tree);
+			
+			var plant:Plant = new Plant();
+			tempObjs.add(plant);
+			
+			var stump:Stump = new Stump();
+			tempObjs.add(stump);
+			
+			add(tempObjs);
+			
+			
+			for (obj in tempObjs.members)
+			{
+				trace("Added debug object");
+				obj.visible = false;
+			}
+			
+			addedTempObjs = true;
+		}
+		
+		if (FlxG.keys.justPressed.LEFT)
+			curOBJ -= 1;
+		if (FlxG.keys.justPressed.RIGHT)
+			curOBJ += 1;
+		
+		if (curOBJ >= tempObjs.members.length)
+			curOBJ = 0;
+		if (curOBJ < 0)
+			curOBJ = tempObjs.members.length - 1;
+		
+		tempObjs.forEach(function(i:Interactable)
+		{
+			i.visible = false;
+		});
+		
+		tempObjs.members[curOBJ].visible = true;
+		tempObjs.members[curOBJ].setPosition(FlxG.mouse.x, FlxG.mouse.y);
+		
+		tempObjs.members[curOBJ].flipX = FlxG.keys.pressed.F;
+		
+		if (FlxG.mouse.justPressed)
+		{
+			var objNew:Interactable;
+			
+			switch(curOBJ)
+			{
+				case 0:
+					objNew = new Tree();
+				case 1:
+					objNew = new Plant();
+				case 2:
+					objNew = new Stump();
+				default:
+					objNew = new Interactable();
+			}
+			
+			objNew.flipX = FlxG.keys.pressed.F;
+			objNew.setPosition(tempObjs.members[curOBJ].x, tempObjs.members[curOBJ].y);
+			_grpEntities.add(objNew);
+		}
+	}
+	
 }

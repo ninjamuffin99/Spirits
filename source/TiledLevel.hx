@@ -255,8 +255,7 @@ class TiledLevel extends TiledMap
 					treeType = "large";
 				
 				var tree:Tree = new Tree(x, y, treeType);
-				tree.immovable = true;
-				state._grpEntities.add(tree);
+				//state._grpEntities.add(tree);
 			case "treesmall":
 				
 				var treeType:String = "small";
@@ -269,7 +268,7 @@ class TiledLevel extends TiledMap
 				
 				var tree:Tree = new Tree(x, y, treeType);
 				tree.immovable = true;
-				state._grpEntities.add(tree);
+				//state._grpEntities.add(tree);
 			case "treemed":
 				
 				var treeType:String = "med";
@@ -284,7 +283,7 @@ class TiledLevel extends TiledMap
 				if (FlxG.random.bool())
 					tree.flipX = true;
 				tree.immovable = true;
-				state._grpEntities.add(tree);
+				//state._grpEntities.add(tree);
 			case "treelarge":
 				
 				var treeType:String = "large";
@@ -297,36 +296,36 @@ class TiledLevel extends TiledMap
 				
 				var tree:Tree = new Tree(x, y, treeType);
 				tree.immovable = true;
-				state._grpEntities.add(tree);
+				//state._grpEntities.add(tree);
 			case "spiritarea":
 				var area:FlxObject = new FlxObject(x, y, o.width, o.height);
 				var dummyArea:FlxSprite = new FlxSprite(x, y).makeGraphic(o.width, o.height, FlxColor.MAGENTA);
 				dummyArea.alpha = 0.5;
 				state.add(dummyArea);
-				state.grpSpiritArea.add(area);
+				//state.grpSpiritArea.add(area);
 			case "lightghost":
 				var lightGhost:LightSpirit = new LightSpirit(x, y, getPathData(o));
-				state._grpGhosts.add(lightGhost);
+				//state._grpGhosts.add(lightGhost);
 			case "plant":
 				var plant:Plant = new Plant(x, y);
 				if (FlxG.random.bool())
 					plant.flipX = true;
-				state._grpEntities.add(plant);
+				//state._grpEntities.add(plant);
 			case "rock":
 				var rock:Rock = new Rock(x, y);
 				if (FlxG.random.bool())
 				{
 					rock.flipX = true;
 				}
-				state._grpEntities.add(rock);
+				//state._grpEntities.add(rock);
 			case "totem":
 				var totem:Totem = new Totem(x, y);
-				state._grpEntities.add(totem);
+				//state._grpEntities.add(totem);
 			case "stump":
 				var stump:Stump = new Stump(x, y);
 				if (FlxG.random.bool())
 					stump.flipX = true;
-				state._grpEntities.add(stump);
+				//state._grpEntities.add(stump);
 		}
 		
 	}
