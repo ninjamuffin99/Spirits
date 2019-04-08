@@ -20,6 +20,8 @@ import flixel.addons.tile.FlxTileSpecial;
 import flixel.util.FlxColor;
 import flixel.util.FlxPath;
 import haxe.io.Path;
+using flixel.util.FlxStringUtil;
+using StringTools;
 
 /**
  * @author Samuel Batista
@@ -243,6 +245,18 @@ class TiledLevel extends TiledMap
 				
 				FlxG.log.add("Player object added");
 			case "tree":
+				var tree:Tree = new Tree(x, y);
+				tree.immovable = true;
+				state._grpEntities.add(tree);
+			case "treesmall":
+				var tree:Tree = new Tree(x, y);
+				tree.immovable = true;
+				state._grpEntities.add(tree);
+			case "treemed":
+				var tree:Tree = new Tree(x, y);
+				tree.immovable = true;
+				state._grpEntities.add(tree);
+			case "treelarge":
 				var tree:Tree = new Tree(x, y);
 				tree.immovable = true;
 				state._grpEntities.add(tree);

@@ -41,6 +41,7 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		FlxG.camera.zoom = 0.9;
+		FlxG.camera.bgColor = 0xFFf7adab;
 		
 		var forestBG:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.forestSketch__png);
 		//add(forestBG);
@@ -64,7 +65,7 @@ class PlayState extends FlxState
 		
 		//trace(FLS.assets.getFileAsText("assets/data/levelGood.tmx"));
 		
-		_map = new TiledLevel("assets/data/levelGood.tmx", this);
+		_map = new TiledLevel("assets/data/newlevelgood.tmx", this);
 		//add(_map.backgroundLayer);
 		add(_map.imagesLayer);
 		add(_map.BGObjects);

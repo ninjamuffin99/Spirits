@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="150" height="150" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="17">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="150" height="150" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="24">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="2" columns="2">
-  <image source="bcfc/Spirits/assets/data/tileset.png" width="64" height="32"/>
+  <image source="tileset.png" width="64" height="32"/>
  </tileset>
  <layer id="3" name="Foreground" width="150" height="150">
   <properties>
@@ -20,5 +20,6 @@
   <object id="16" name="dumbass" x="785.333" y="3161.33">
    <polyline points="0,0 -12,-150.667 245.333,-170.667 260,46.6667"/>
   </object>
+  <object id="17" name="tree" type="tree" x="3117" y="2026"/>
  </objectgroup>
 </map>

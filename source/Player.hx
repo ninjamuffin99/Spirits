@@ -38,7 +38,8 @@ class Player extends Interactable
 	{
 		super(X, Y);
 		
-		makeGraphic(64, 90, FlxColor.BLUE);
+		loadGraphic(AssetPaths.player__png);
+		//makeGraphic(64, 90, FlxColor.BLUE);
 		
 		offset.y = height - 20;
 		height = 20;

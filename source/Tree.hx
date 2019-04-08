@@ -11,13 +11,23 @@ import flixel.util.FlxColor;
 class Tree extends Interactable 
 {
 
-	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
+	public function new(?X:Float=0, ?Y:Float=0, ?type:String = "small") 
 	{
-		super(X, Y, SimpleGraphic);
+		super(X, Y);
 		
-		makeGraphic(50, 120, FlxG.random.color(0xFFFFFFF, 0xFFAAAAAA));
-		offset.y = height - 16;
-		height = 16;
+		switch(type)
+		{
+			case "small":
+				loadGraphic(AssetPaths.treeSmall__png);
+			case "med":
+				loadGraphic(AssetPaths.treeMed__png);
+			case "large":
+				loadGraphic(AssetPaths.treeLarge__png);
+		}
+		
+		
+		//offset.y = height - 16;
+		//height = 16;
 	}
 	
 }
