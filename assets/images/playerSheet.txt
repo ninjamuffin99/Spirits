@@ -1,0 +1,9 @@
+idol2 = 0 0 95 111
+meditation1 = 96 0 95 111
+meditation2 = 0 112 95 111
+meditation3 = 96 112 95 111
+meditation4 = 192 0 95 111
+meditation5 = 288 0 95 111
+updown2 = 192 112 95 111
+updown3 = 384 0 95 111
+updown4 = 288 112 95 111
