@@ -16,6 +16,7 @@ class Totem extends Interactable
 		super(X, Y, SimpleGraphic);
 		
 		OBJtype = Interactable.TOTEM;
+		immovable = true;
 		
 		var tex = FlxAtlasFrames.fromSpriteSheetPacker(AssetPaths.totemSheet__png, AssetPaths.totemSheet__txt);
 		frames = tex;
