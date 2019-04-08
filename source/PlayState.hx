@@ -43,9 +43,6 @@ class PlayState extends FlxState
 		FlxG.camera.zoom = 0.9;
 		FlxG.camera.bgColor = 0xFFf7adab;
 		
-		var forestBG:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.forestSketch__png);
-		//add(forestBG);
-		
 		_grpGhosts = new FlxTypedGroup<Ghost>();
 		add(_grpGhosts);
 		
@@ -196,6 +193,18 @@ class PlayState extends FlxState
 					{
 						var goodGhost:BeastSpirit = new BeastSpirit();
 					}
+				}
+			}
+			
+			if (i.OBJtype == Interactable.TOTEM)
+			{
+				if (!worldMeditation)
+				{
+					i.animation.play("sleep");
+				}
+				else
+				{
+					i.animation.play("on");
 				}
 			}
 		});
