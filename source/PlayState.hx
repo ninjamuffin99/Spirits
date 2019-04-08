@@ -42,6 +42,7 @@ class PlayState extends FlxState
 	{
 		FlxG.camera.zoom = 0.9;
 		FlxG.camera.bgColor = 0xFFf7adab;
+		FlxG.sound.playMusic(AssetPaths.song__ogg, 0.6);
 		
 		_grpGhosts = new FlxTypedGroup<Ghost>();
 		add(_grpGhosts);
