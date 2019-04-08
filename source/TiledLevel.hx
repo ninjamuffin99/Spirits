@@ -267,12 +267,12 @@ class TiledLevel extends TiledMap
 				if (o.name == "large" || o.name ==  "treelarge" || o.name ==  "treel")
 					treeType = "large";
 				
-				var tree:Tree = new Tree(x, y);
+				var tree:Tree = new Tree(x, y, treeType);
 				tree.immovable = true;
 				state._grpEntities.add(tree);
 			case "treemed":
 				
-				var treeType:String = "small";
+				var treeType:String = "med";
 				if (o.name == "small" || o.name == "treesmall" || o.name == "trees")
 					treeType = "small";
 				if (o.name == "med" || o.name == "treesmed" || o.name == "treemedium" || o.name == "treem")
@@ -280,12 +280,12 @@ class TiledLevel extends TiledMap
 				if (o.name == "large" || o.name ==  "treelarge" || o.name ==  "treel")
 					treeType = "large";
 				
-				var tree:Tree = new Tree(x, y);
+				var tree:Tree = new Tree(x, y, treeType);
 				tree.immovable = true;
 				state._grpEntities.add(tree);
 			case "treelarge":
 				
-				var treeType:String = "small";
+				var treeType:String = "large";
 				if (o.name == "small" || o.name == "treesmall" || o.name == "trees")
 					treeType = "small";
 				if (o.name == "med" || o.name == "treesmed" || o.name == "treemedium" || o.name == "treem")
@@ -293,7 +293,7 @@ class TiledLevel extends TiledMap
 				if (o.name == "large" || o.name ==  "treelarge" || o.name ==  "treel")
 					treeType = "large";
 				
-				var tree:Tree = new Tree(x, y);
+				var tree:Tree = new Tree(x, y, treeType);
 				tree.immovable = true;
 				state._grpEntities.add(tree);
 			case "spiritarea":
