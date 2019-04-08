@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="4958">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="5050">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="2" columns="2">
   <image source="bcfc/Spirits/assets/data/tileset.png" width="64" height="32"/>
  </tileset>
@@ -951,5 +951,97 @@
   <object id="4955" name="plain" type="plant" x="1994.15" y="6121.89" width="42" height="35"/>
   <object id="4956" name="plain" type="plant" x="2003.24" y="5137.05" width="42.4242" height="35"/>
   <object id="4957" name="plain" type="plant" x="1585.06" y="3546.14" width="42" height="35"/>
+  <object id="4958" name="rock" type="rock" x="649" y="1232.5" width="42" height="35"/>
+  <object id="4959" name="rock" type="rock" x="1233" y="668.5" width="42" height="35"/>
+  <object id="4960" name="rock" type="rock" x="877" y="856.5" width="42" height="35"/>
+  <object id="4961" name="rock" type="rock" x="915" y="946.5" width="42" height="35"/>
+  <object id="4962" name="rock" type="rock" x="1601" y="1272.5" width="42" height="35"/>
+  <object id="4963" name="rock" type="rock" x="543" y="1742.5" width="42" height="35"/>
+  <object id="4964" name="rock" type="rock" x="1447" y="1798.5" width="42" height="35"/>
+  <object id="4965" name="rock" type="rock" x="2065" y="1224.5" width="42" height="35"/>
+  <object id="4966" name="rock" type="rock" x="2457" y="1540.5" width="42" height="35"/>
+  <object id="4967" name="rock" type="rock" x="2483" y="1966.5" width="42" height="35"/>
+  <object id="4968" name="rock" type="rock" x="3683" y="1338.5" width="42" height="35"/>
+  <object id="4969" name="rock" type="rock" x="3811" y="1820.5" width="42" height="35"/>
+  <object id="4970" name="rock" type="rock" x="4093" y="1686.5" width="42" height="35"/>
+  <object id="4971" name="rock" type="rock" x="4261" y="950.5" width="42" height="35"/>
+  <object id="4972" name="rock" type="rock" x="4155" y="2306.5" width="42" height="35"/>
+  <object id="4973" name="rock" type="rock" x="5225" y="2410.5" width="42" height="35"/>
+  <object id="4974" name="rock" type="rock" x="5281" y="3132.5" width="42" height="35"/>
+  <object id="4975" name="rock" type="rock" x="4861" y="2864.5" width="42" height="35"/>
+  <object id="4976" name="rock" type="rock" x="4769" y="3124.5" width="42" height="35"/>
+  <object id="4977" name="rock" type="rock" x="5389" y="3626.5" width="42" height="35"/>
+  <object id="4978" name="rock" type="rock" x="4861" y="3772.5" width="42" height="35"/>
+  <object id="4979" name="rock" type="rock" x="4513" y="3474.5" width="42" height="35"/>
+  <object id="4980" name="rock" type="rock" x="6017" y="2784.5" width="42" height="35"/>
+  <object id="4981" name="rock" type="rock" x="5965" y="3222.5" width="42" height="35"/>
+  <object id="4982" name="rock" type="rock" x="5983" y="3976.5" width="42" height="35"/>
+  <object id="4983" name="rock" type="rock" x="6133" y="4436.5" width="42" height="35"/>
+  <object id="4984" name="rock" type="rock" x="5813" y="4366.5" width="42" height="35"/>
+  <object id="4985" name="rock" type="rock" x="6052" y="4715.5" width="42" height="35"/>
+  <object id="4986" name="rock" type="rock" x="5757" y="5251.5" width="42" height="35"/>
+  <object id="4987" name="rock" type="rock" x="5936.58" y="5649.17" width="42" height="35"/>
+  <object id="4988" name="rock" type="rock" x="5015.36" y="5382.5" width="42" height="35"/>
+  <object id="4989" name="rock" type="rock" x="4730.52" y="4976.44" width="42" height="35"/>
+  <object id="4990" name="rock" type="rock" x="4300.21" y="5043.11" width="42" height="35"/>
+  <object id="4991" name="rock" type="rock" x="3894.15" y="3982.5" width="42" height="35"/>
+  <object id="4992" name="rock" type="rock" x="5091.12" y="4424.92" width="42" height="35"/>
+  <object id="4993" name="rock" type="rock" x="4391.12" y="4264.32" width="42" height="35"/>
+  <object id="4994" name="rock" type="rock" x="5103.24" y="4991.59" width="42" height="35"/>
+  <object id="4995" name="rock" type="rock" x="4700.21" y="5576.44" width="42" height="35"/>
+  <object id="4996" name="rock" type="rock" x="4260.82" y="5821.89" width="42" height="35"/>
+  <object id="4997" name="rock" type="rock" x="4082.03" y="5715.83" width="42" height="35"/>
+  <object id="4998" name="rock" type="rock" x="4127.48" y="5761.29" width="42" height="35"/>
+  <object id="4999" name="rock" type="rock" x="3979" y="6127.95" width="42" height="35"/>
+  <object id="5000" name="rock" type="rock" x="3721.42" y="5843.11" width="42" height="35"/>
+  <object id="5001" name="rock" type="rock" x="4212.33" y="6218.86" width="42" height="35"/>
+  <object id="5002" name="rock" type="rock" x="3457.79" y="6103.71" width="42" height="35"/>
+  <object id="5003" name="rock" type="rock" x="2388.09" y="5552.2" width="42" height="35"/>
+  <object id="5004" name="rock" type="rock" x="2615.36" y="5627.95" width="42" height="35"/>
+  <object id="5005" name="rock" type="rock" x="2175.97" y="6173.41" width="42" height="35"/>
+  <object id="5006" name="rock" type="rock" x="2512.33" y="5930.98" width="42" height="35"/>
+  <object id="5007" name="rock" type="rock" x="1385.06" y="5409.77" width="42" height="35"/>
+  <object id="5008" name="rock" type="rock" x="1630.52" y="5534.02" width="42" height="35"/>
+  <object id="5009" name="rock" type="rock" x="1651.73" y="5297.65" width="42" height="35"/>
+  <object id="5010" name="rock" type="rock" x="1669" y="4956.5" width="42" height="35"/>
+  <object id="5011" name="rock" type="rock" x="1783" y="3914.5" width="42" height="35"/>
+  <object id="5012" name="rock" type="rock" x="1331" y="3518.5" width="42" height="35"/>
+  <object id="5013" name="rock" type="rock" x="1103" y="3562.5" width="42" height="35"/>
+  <object id="5014" name="rock" type="rock" x="731" y="3530.5" width="42" height="35"/>
+  <object id="5015" name="rock" type="rock" x="651" y="4878.5" width="42" height="35"/>
+  <object id="5016" name="rock" type="rock" x="239" y="4534.5" width="42" height="35"/>
+  <object id="5017" name="rock" type="rock" x="239" y="5042.5" width="42" height="35"/>
+  <object id="5018" name="rock" type="rock" x="355" y="4998.5" width="42" height="35"/>
+  <object id="5019" name="rock" type="rock" x="3448.7" y="2740.08" width="42" height="35"/>
+  <object id="5020" name="rock" type="rock" x="2345.67" y="2561.29" width="42" height="35"/>
+  <object id="5021" name="rock" type="rock" x="1836.58" y="2964.32" width="42" height="35"/>
+  <object id="5022" name="rock" type="rock" x="1697.18" y="3009.77" width="42" height="35"/>
+  <object id="5023" name="rock" type="rock" x="1506.27" y="2937.05" width="42" height="35"/>
+  <object id="5024" name="rock" type="rock" x="560.818" y="2724.92" width="42" height="35"/>
+  <object id="5025" name="rock" type="rock" x="1211" y="2886.5" width="42" height="35"/>
+  <object id="5026" name="rock" type="rock" x="287" y="2314.5" width="42" height="35"/>
+  <object id="5027" name="rock" type="rock" x="5591" y="5654.5" width="42" height="35"/>
+  <object id="5028" name="rock" type="rock" x="3915" y="4638.5" width="42" height="35"/>
+  <object id="5029" name="rock" type="rock" x="5021.42" y="2767.35" width="42" height="35"/>
+  <object id="5030" name="rock" type="rock" x="4503.24" y="1264.32" width="42" height="35"/>
+  <object id="5031" name="rock" type="rock" x="6059" y="1354.5" width="42" height="35"/>
+  <object id="5032" name="rock" type="rock" x="5939" y="802.5" width="42" height="35"/>
+  <object id="5033" name="rock" type="rock" x="5467" y="346.5" width="42" height="35"/>
+  <object id="5034" name="rock" type="rock" x="4883" y="834.5" width="42" height="35"/>
+  <object id="5035" name="rock" type="rock" x="2291" y="4394.5" width="42" height="35"/>
+  <object id="5036" name="rock" type="rock" x="1511" y="2121.5" width="42" height="35"/>
+  <object id="5037" name="rock" type="rock" x="3185.06" y="3121.89" width="42" height="35"/>
+  <object id="5038" name="rock" type="rock" x="3075" y="4250.5" width="42" height="35"/>
+  <object id="5039" name="rock" type="rock" x="1957.79" y="870.379" width="42" height="35"/>
+  <object id="5040" name="rock" type="rock" x="2555" y="166.5" width="42" height="35"/>
+  <object id="5041" name="rock" type="rock" x="2755" y="190.5" width="42" height="35"/>
+  <object id="5042" name="rock" type="rock" x="2627" y="334.5" width="42" height="35"/>
+  <object id="5043" name="rock" type="rock" x="5743" y="6286.5" width="42" height="35"/>
+  <object id="5044" name="rock" type="rock" x="5531" y="6318.5" width="42" height="35"/>
+  <object id="5045" name="rock" type="rock" x="5631" y="6346.5" width="42" height="35"/>
+  <object id="5046" name="rock" type="rock" x="315" y="5582.5" width="42" height="35"/>
+  <object id="5047" name="rock" type="rock" x="467" y="5670.5" width="42" height="35"/>
+  <object id="5048" name="rock" type="rock" x="467" y="5518.5" width="42" height="35"/>
+  <object id="5049" name="rock" type="rock" x="355" y="5830.5" width="42" height="35"/>
  </objectgroup>
 </map>
