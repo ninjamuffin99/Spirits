@@ -43,8 +43,8 @@ class Player extends Interactable
 		
 		offset.y = height - 20;
 		height = 20;
-		offset.x = 15;
-		width -= 35;
+		offset.x = 35;
+		width -= 75;
 		
 		drag.x = Drag;
 		drag.y = Drag;
