@@ -308,6 +308,9 @@ class TiledLevel extends TiledMap
 			case "plant":
 				var plant:Plant = new Plant(x, y);
 				state._grpEntities.add(plant);
+			case "rock":
+				var rock:Rock = new Rock(x, y);
+				state._grpEntities.add(rock);
 		}
 		
 	}

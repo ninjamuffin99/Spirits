@@ -24,6 +24,9 @@ class Plant extends Interactable
 		
 		allowCollisions = FlxObject.NONE;
 		
+		offset.y = height - 9;
+		height = 5;
+		
 	}
 	
 }
