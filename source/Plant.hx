@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 
 /**
@@ -19,7 +20,9 @@ class Plant extends Interactable
 		if (plant == "grass")
 			num = FlxG.random.int(1, 6);
 		
-		loadGraphic("assets/images/gameArt/" + plant + num + ".png"
+		loadGraphic("assets/images/gameArt/" + plant + num + ".png");
+		
+		allowCollisions = FlxObject.NONE;
 		
 	}
 	
