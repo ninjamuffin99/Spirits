@@ -305,6 +305,9 @@ class TiledLevel extends TiledMap
 			case "lightghost":
 				var lightGhost:LightSpirit = new LightSpirit(x, y, getPathData(o));
 				state._grpGhosts.add(lightGhost);
+			case "plant":
+				var plant:Plant = new Plant(x, y);
+				state._grpEntities.add(plant);
 		}
 		
 	}

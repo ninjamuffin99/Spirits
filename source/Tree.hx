@@ -15,6 +15,8 @@ class Tree extends Interactable
 	{
 		super(X, Y);
 		
+		type = FlxG.random.getObject(["small", "med", "large"]);
+		
 		switch(type)
 		{
 			case "small":
