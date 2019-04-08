@@ -247,25 +247,52 @@ class TiledLevel extends TiledMap
 			case "tree":
 				
 				var treeType:String = "small";
-				if (o.name == "small" || o.name == "treesmall")
+				if (o.name == "small" || o.name == "treesmall" || o.name == "trees")
 					treeType = "small";
-				if (o.name == "med" || o.name == "treesmed" || o.name == "treemedium")
+				if (o.name == "med" || o.name == "treesmed" || o.name == "treemedium" || o.name == "treem")
 					treeType = "med";
-				if (o.name == "large" || o.name ==  "treelarge")
+				if (o.name == "large" || o.name ==  "treelarge" || o.name ==  "treel")
 					treeType = "large";
 				
 				var tree:Tree = new Tree(x, y, treeType);
 				tree.immovable = true;
 				state._grpEntities.add(tree);
 			case "treesmall":
+				
+				var treeType:String = "small";
+				if (o.name == "small" || o.name == "treesmall" || o.name == "trees")
+					treeType = "small";
+				if (o.name == "med" || o.name == "treesmed" || o.name == "treemedium" || o.name == "treem")
+					treeType = "med";
+				if (o.name == "large" || o.name ==  "treelarge" || o.name ==  "treel")
+					treeType = "large";
+				
 				var tree:Tree = new Tree(x, y);
 				tree.immovable = true;
 				state._grpEntities.add(tree);
 			case "treemed":
+				
+				var treeType:String = "small";
+				if (o.name == "small" || o.name == "treesmall" || o.name == "trees")
+					treeType = "small";
+				if (o.name == "med" || o.name == "treesmed" || o.name == "treemedium" || o.name == "treem")
+					treeType = "med";
+				if (o.name == "large" || o.name ==  "treelarge" || o.name ==  "treel")
+					treeType = "large";
+				
 				var tree:Tree = new Tree(x, y);
 				tree.immovable = true;
 				state._grpEntities.add(tree);
 			case "treelarge":
+				
+				var treeType:String = "small";
+				if (o.name == "small" || o.name == "treesmall" || o.name == "trees")
+					treeType = "small";
+				if (o.name == "med" || o.name == "treesmed" || o.name == "treemedium" || o.name == "treem")
+					treeType = "med";
+				if (o.name == "large" || o.name ==  "treelarge" || o.name ==  "treel")
+					treeType = "large";
+				
 				var tree:Tree = new Tree(x, y);
 				tree.immovable = true;
 				state._grpEntities.add(tree);
