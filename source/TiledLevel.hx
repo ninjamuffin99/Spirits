@@ -311,6 +311,9 @@ class TiledLevel extends TiledMap
 			case "rock":
 				var rock:Rock = new Rock(x, y);
 				state._grpEntities.add(rock);
+			case "totem":
+				var totem:Totem = new Totem(x, y);
+				state._grpEntities.add(totem);
 		}
 		
 	}
