@@ -43,6 +43,8 @@ class PlayState extends FlxState
 		FlxG.camera.zoom = 0.9;
 		FlxG.camera.bgColor = 0xFFf7adab;
 		FlxG.sound.playMusic(AssetPaths.song__ogg, 0.6);
+		FlxG.camera.fade(FlxColor.BLACK, 5, true);
+		
 		
 		_grpGhosts = new FlxTypedGroup<Ghost>();
 		add(_grpGhosts);
@@ -73,6 +75,13 @@ class PlayState extends FlxState
 		
 		_grpEntities.add(_player);
 		
+		var beast:Interactable = new Interactable(2440, 2670);
+		beast.loadGraphic(AssetPaths.beast__png);
+		beast.immovable = true;
+		beast.offset.y = beast.height - 50;
+		beast.height -= 50;
+		_grpEntities.add(beast);
+		
 		camFollow = new FlxObject(_player.x, _player.y, 1, 1);
 		add(camFollow);
 		
@@ -84,7 +93,7 @@ class PlayState extends FlxState
 		HUD = new FlxText(10, 10, 0, "", 20);
 		HUD.color = FlxColor.RED;
 		HUD.scrollFactor.set();
-		add(HUD);
+		//add(HUD);
 		
 		meditateOverlay = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLUE);
 		meditateOverlay.scrollFactor.set();
@@ -142,6 +151,7 @@ class PlayState extends FlxState
 		if (worldMeditation != _player.meditating)
 		{
 			FlxG.camera.flash(FlxColor.WHITE, 0.4);
+			FlxG.sound.play(AssetPaths.meditate__ogg);
 		}
 		
 		worldMeditation = _player.meditating;
@@ -186,6 +196,8 @@ class PlayState extends FlxState
 		
 		_grpEntities.forEach(function(i:Interactable)
 		{
+			i.visible = i.isOnScreen();
+			
 			if (i.OBJtype == Interactable.DARK_GHOST_CORPSE)
 			{
 				if (i.overlaps(grpSpiritArea))
