@@ -1,26 +1,21 @@
 package;
 
-import flixel.FlxG;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 
 /**
  * ...
  * @author 
  */
-class Rock extends Interactable 
+class Stump extends Interactable 
 {
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
 		
-		
-		loadGraphic("assets/images/gameArt/rock" + FlxG.random.int(1, 3) +".png");
-		immovable = true;
-		
-		offset.y = height - 30;
-		height = 31;
-		
+		loadGraphic(AssetPaths.stumpSmall__png);
+		offset.y = height - 20;
+		height = 20;
 	}
 	
 }

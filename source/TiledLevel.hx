@@ -281,6 +281,8 @@ class TiledLevel extends TiledMap
 					treeType = "large";
 				
 				var tree:Tree = new Tree(x, y, treeType);
+				if (FlxG.random.bool())
+					tree.flipX = true;
 				tree.immovable = true;
 				state._grpEntities.add(tree);
 			case "treelarge":
@@ -307,13 +309,24 @@ class TiledLevel extends TiledMap
 				state._grpGhosts.add(lightGhost);
 			case "plant":
 				var plant:Plant = new Plant(x, y);
+				if (FlxG.random.bool())
+					plant.flipX = true;
 				state._grpEntities.add(plant);
 			case "rock":
 				var rock:Rock = new Rock(x, y);
+				if (FlxG.random.bool())
+				{
+					rock.flipX = true;
+				}
 				state._grpEntities.add(rock);
 			case "totem":
 				var totem:Totem = new Totem(x, y);
 				state._grpEntities.add(totem);
+			case "stump":
+				var stump:Stump = new Stump(x, y);
+				if (FlxG.random.bool())
+					stump.flipX = true;
+				state._grpEntities.add(stump);
 		}
 		
 	}
