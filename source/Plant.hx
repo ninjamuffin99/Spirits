@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxObject;
+import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 
 /**
@@ -11,16 +12,28 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 class Plant extends Interactable 
 {
 
-	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
+	public function new(?X:Float=0, ?Y:Float=0, ?variation:Int = 0) 
 	{
-		super(X, Y, SimpleGraphic);
+		super(X, Y);
 		
-		var plant:String = FlxG.random.getObject(["flower", "grass"]);
-		var num:Int = FlxG.random.int(1, 4);
-		if (plant == "grass")
-			num = FlxG.random.int(1, 6);
+		if (variation == null)
+			variation = 0;
 		
-		loadGraphic("assets/images/gameArt/" + plant + num + ".png");
+		var tex = FlxAtlasFrames.fromSpriteSheetPacker(AssetPaths.plantSheet__png, AssetPaths.plantSheet__txt);
+		frames = tex;
+		
+		maxVariant = frames.numFrames;
+		trace(maxVariant);
+		
+		var daFrames:Array<Int> = [];
+		for (f in 0...maxVariant)
+		{
+			daFrames.push(f);
+		}
+		animation.add("lmao", daFrames, 0);
+		animation.play("lmao");
+		
+		animation.curAnim.curFrame = variation;
 		
 		allowCollisions = FlxObject.NONE;
 		

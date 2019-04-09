@@ -246,38 +246,38 @@ class TiledLevel extends TiledMap
 				FlxG.log.add("Player object added");
 			case "tree":
 				
-				var treeType:String = "small";
+				var treeType:Int = 0;
 				if (o.name == "small" || o.name == "treesmall" || o.name == "trees")
-					treeType = "small";
+					treeType = 0;
 				if (o.name == "med" || o.name == "treesmed" || o.name == "treemedium" || o.name == "treem")
-					treeType = "med";
+					treeType = 1;
 				if (o.name == "large" || o.name ==  "treelarge" || o.name ==  "treel")
-					treeType = "large";
+					treeType = 2;
 				
-				var tree:Tree = new Tree(x, y, treeType);
+				var tree:Tree = new Tree(x, y, FlxG.random.int(0, 2));
 				//state._grpEntities.add(tree);
 			case "treesmall":
 				
-				var treeType:String = "small";
+				var treeType:Int = 0;
 				if (o.name == "small" || o.name == "treesmall" || o.name == "trees")
-					treeType = "small";
+					treeType = 0;
 				if (o.name == "med" || o.name == "treesmed" || o.name == "treemedium" || o.name == "treem")
-					treeType = "med";
+					treeType = 1;
 				if (o.name == "large" || o.name ==  "treelarge" || o.name ==  "treel")
-					treeType = "large";
+					treeType = 2;
 				
-				var tree:Tree = new Tree(x, y, treeType);
+				var tree:Tree = new Tree(x, y, 0);
 				tree.immovable = true;
 				//state._grpEntities.add(tree);
 			case "treemed":
 				
-				var treeType:String = "med";
+				var treeType:Int = 0;
 				if (o.name == "small" || o.name == "treesmall" || o.name == "trees")
-					treeType = "small";
+					treeType = 0;
 				if (o.name == "med" || o.name == "treesmed" || o.name == "treemedium" || o.name == "treem")
-					treeType = "med";
+					treeType = 1;
 				if (o.name == "large" || o.name ==  "treelarge" || o.name ==  "treel")
-					treeType = "large";
+					treeType = 2;
 				
 				var tree:Tree = new Tree(x, y, treeType);
 				if (FlxG.random.bool())
@@ -286,13 +286,13 @@ class TiledLevel extends TiledMap
 				//state._grpEntities.add(tree);
 			case "treelarge":
 				
-				var treeType:String = "large";
+				var treeType:Int = 0;
 				if (o.name == "small" || o.name == "treesmall" || o.name == "trees")
-					treeType = "small";
+					treeType = 0;
 				if (o.name == "med" || o.name == "treesmed" || o.name == "treemedium" || o.name == "treem")
-					treeType = "med";
+					treeType = 1;
 				if (o.name == "large" || o.name ==  "treelarge" || o.name ==  "treel")
-					treeType = "large";
+					treeType = 2;
 				
 				var tree:Tree = new Tree(x, y, treeType);
 				tree.immovable = true;

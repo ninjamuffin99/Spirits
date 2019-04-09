@@ -45,6 +45,7 @@ class PlayState extends FlxState
 	private var curTool:Int = 0;
 	private var editorTools:Array<String> = ["Add", "Move"];
 	private var curOBJ:Int = 0;
+	private var _grpEditorHUD:FlxTypedGroup<FlxSprite>;
 	
 	override public function create():Void
 	{
@@ -117,6 +118,15 @@ class PlayState extends FlxState
 		add(bulletPreview);
 		add(stringPreview);
 		
+		
+		
+		_grpEditorHUD = new FlxTypedGroup<FlxSprite>();
+		add(_grpEditorHUD);
+		
+		var editingText:FlxText = new FlxText(10, 10, 0, "EDITOR MODE - ENTER TO TOGGLE", 32);
+		editingText.scrollFactor.set();
+		_grpEditorHUD.add(editingText);
+		
 		super.create();
 	}
 
@@ -131,6 +141,7 @@ class PlayState extends FlxState
 		{
 			_player.solid = false;
 			mapEditCode();
+			_grpEditorHUD.visible = true;
 		}
 		else
 		{
@@ -138,6 +149,7 @@ class PlayState extends FlxState
 			{
 				tempObjs.forEach(function(i:Interactable){i.visible = false; });
 			}
+			_grpEditorHUD.visible = false;
 			
 			_player.solid = true;
 		}
@@ -359,6 +371,7 @@ class PlayState extends FlxState
 	
 	private var tempObjs:FlxTypedGroup<Interactable>;
 	private var addedTempObjs = false;
+	private var curVariant:Int = 0;
 	
 	private function addingObjects():Void
 	{
@@ -391,9 +404,13 @@ class PlayState extends FlxState
 		}
 		
 		if (FlxG.keys.justPressed.LEFT)
+		{
 			curOBJ -= 1;
+		}
 		if (FlxG.keys.justPressed.RIGHT)
+		{
 			curOBJ += 1;
+		}
 		
 		if (curOBJ >= tempObjs.members.length)
 			curOBJ = 0;
@@ -412,14 +429,15 @@ class PlayState extends FlxState
 		
 		if (FlxG.mouse.justPressed)
 		{
+			
 			var objNew:Interactable;
 			
 			switch(curOBJ)
 			{
 				case 0:
-					objNew = new Tree();
+					objNew = new Tree(0, 0, curVariant);
 				case 1:
-					objNew = new Plant();
+					objNew = new Plant(0, 0, curVariant);
 				case 2:
 					objNew = new Stump();
 				case 3:
@@ -431,7 +449,17 @@ class PlayState extends FlxState
 			objNew.flipX = FlxG.keys.pressed.F;
 			objNew.setPosition(tempObjs.members[curOBJ].x, tempObjs.members[curOBJ].y);
 			_grpEntities.add(objNew);
+			
+			curVariant = FlxG.random.int(0, tempObjs.members[curOBJ].maxVariant - 1);
+			tempObjs.members[curOBJ].animation.curAnim.curFrame = curVariant;
+			tempObjs.members[curOBJ].updateOffsets();
+		}
+		
+		if (FlxG.keys.justPressed.R)
+		{
+			curVariant = FlxG.random.int(0, tempObjs.members[curOBJ].maxVariant - 1);
+			tempObjs.members[curOBJ].animation.curAnim.curFrame = curVariant;
+			tempObjs.members[curOBJ].updateOffsets();
 		}
 	}
-	
 }

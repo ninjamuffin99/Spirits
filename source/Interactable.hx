@@ -30,6 +30,9 @@ class Interactable extends FlxSprite
 	
 	public static inline var LIGHT_GHOST_CORPSE:Int = 51;
 	public static inline var DARK_GHOST_CORPSE:Int = 52;
+	
+	//EDITOR SHIT
+	public var maxVariant:Int = 0;
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
@@ -47,6 +50,16 @@ class Interactable extends FlxSprite
 			alpha = 0;
 		
 		alpha = FlxMath.roundDecimal(alpha, 2);
+		
+	}
+	
+	public function updateOffsets():Void
+	{
+		
+	}
+	
+	private function offsetHelper():Void
+	{
 		
 	}
 	

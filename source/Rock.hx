@@ -12,7 +12,7 @@ class Rock extends Interactable
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
-		super(X, Y, SimpleGraphic);
+		super(X, Y);
 		
 		
 		loadGraphic("assets/images/gameArt/rock" + FlxG.random.int(1, 3) +".png");

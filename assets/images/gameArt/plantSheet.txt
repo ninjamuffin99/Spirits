@@ -1,0 +1,10 @@
+flower1 = 61 47 24 41
+flower2 = 51 89 20 32
+flower3 = 33 47 27 40
+flower4 = 0 75 27 47
+grass1 = 86 42 21 31
+grass2 = 85 0 38 41
+grass3 = 0 41 32 33
+grass4 = 44 0 40 46
+grass5 = 0 0 43 40
+grass6 = 28 88 22 34

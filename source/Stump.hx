@@ -16,6 +16,7 @@ class Stump extends Interactable
 		immovable = true;
 		
 		loadGraphic(AssetPaths.stumpSmall__png);
+		animation.add("fasd", [0]);
 		offset.y = height - 20;
 		height = 20;
 	}
